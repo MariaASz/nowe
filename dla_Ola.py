@@ -1,4 +1,5 @@
 print('Pandy sa super')
+print('Zaby i koale tez!')
 
 while True:
     odp=input('Napisz, czy lubisz pingwiny (tak lub nie)')
