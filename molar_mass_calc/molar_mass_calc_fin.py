@@ -24,13 +24,13 @@ def podziel_sklad(sklad: str) -> list[str]:
             poprzedni_alpha = True
             poprzedni_nawias_zamykajacy = False
         elif el == ')':
-            if poprzedni_alpha:
+            if poprzedni_alpha or poprzedni_nawias_zamykajacy:
                 result.append('1')
             result.append(el)
             poprzedni_alpha = False
             poprzedni_nawias_zamykajacy = True
         elif el == '(':
-            if poprzedni_alpha:
+            if poprzedni_alpha or poprzedni_nawias_zamykajacy:
                 result.append('1')
             result.append(el)
             poprzedni_alpha = False
@@ -43,7 +43,7 @@ def podziel_sklad(sklad: str) -> list[str]:
     if result[-1].isalpha() or result[-1] == ')':  #na koncu doda 1, jesli nie ma liczby
         result.append('1')  
 
-    #print(result)
+    print(result)
     return result
 
 def analiza_nawiasow(lista: list[str]) -> list[str]:
