@@ -10,6 +10,8 @@ def sprawdz_znaki(sklad: str) -> bool:
 def podziel_sklad(sklad: str) -> list[str]:
     
     lista = re.findall(r'[A-Z][a-z]*|[\d.]+|[()]', sklad)  #dzieli na liste wielkie litery z malymi opcjonalnie, cyfry z kropkami, nawiasy)
+    if not lista:
+        return lista
     #print(lista)
     result = []
     poprzedni_alpha = False
@@ -43,7 +45,7 @@ def podziel_sklad(sklad: str) -> list[str]:
     if result[-1].isalpha() or result[-1] == ')':  #na koncu doda 1, jesli nie ma liczby
         result.append('1')  
 
-    print(result)
+    #print(result)
     return result
 
 def analiza_nawiasow(lista: list[str]) -> list[str]:
@@ -150,6 +152,8 @@ class MMCalculator:
             self.nierozpoznana_formula()
             return
         lista_elementow_naw = podziel_sklad(sklad)
+        if not lista_elementow_naw:
+            return
         lista_elementow = analiza_nawiasow(lista_elementow_naw)
         if lista_elementow == None:
             self.nierozpoznana_formula()
